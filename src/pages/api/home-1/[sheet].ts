@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { Home1, Home1Hero, Home1Topic } from "@/dtos/general/home-1.dto";
+import { Home1, Home1Hero, Home1Topic } from "@/dtos/home-1.dto";
 import { get } from "@/services/google-spreadsheets";
 import { decrypt } from "@/utils/crypto";
 import type { NextApiRequest, NextApiResponse } from "next";
