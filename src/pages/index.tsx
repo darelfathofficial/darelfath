@@ -1,38 +1,31 @@
 /* eslint-disable @next/next/no-img-element */
-import Footer from "@/components/footer";
-import Header from "@/components/header";
-import Scrollup from "@/components/scrollup";
-import { FooterDTO } from "@/dtos/general/footer.dto";
-import { MenuDTO } from "@/dtos/general/menu.dto";
-import { Home1 } from "@/dtos/home-1.dto";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
-import Link from "next/link";
 
-export const getStaticProps = (async () => {
-  const baseUrl = 'http://127.0.0.1:3000'
-  const menuConnect = await fetch(`${baseUrl}/api/general/menu`);
-  const menuResponse = await menuConnect.json();
+// export const getStaticProps = (async () => {
+//   const baseUrl = 'http://127.0.0.1:3000'
+//   const menuConnect = await fetch(`${baseUrl}/api/general/menu`);
+//   const menuResponse = await menuConnect.json();
 
-  const footerConnect = await fetch(`${baseUrl}/api/general/footer`);
-  const footerResponse = await footerConnect.json();
+//   const footerConnect = await fetch(`${baseUrl}/api/general/footer`);
+//   const footerResponse = await footerConnect.json();
 
-  const dataConnect = await fetch(`${baseUrl}/api/home-1/a32afdacc5e1428167987884b2ac41dd`);
-  const dataResponse = await dataConnect.json();
+//   const dataConnect = await fetch(`${baseUrl}/api/home-1/a32afdacc5e1428167987884b2ac41dd`);
+//   const dataResponse = await dataConnect.json();
 
-  return { props: { menus: menuResponse.data as MenuDTO[], content: dataResponse.data as Home1, footer: footerResponse.data as FooterDTO }, revalidate: 600 };
-}) satisfies GetStaticProps<{
-  menus: MenuDTO[];
-  content: Home1;
-  footer: FooterDTO;
-}>;
+//   return { props: { menus: menuResponse.data as MenuDTO[], content: dataResponse.data as Home1, footer: footerResponse.data as FooterDTO }, revalidate: 600 };
+// }) satisfies GetStaticProps<{
+//   menus: MenuDTO[];
+//   content: Home1;
+//   footer: FooterDTO;
+// }>;
 
-export default function Home({ menus, content, footer }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home() {
   return (
     <>
-      <Header menus={menus} />
+      text
+      {/* <Header menus={menus} />
 
       <main>
-        {/* Banner area start here */}
+        
         <section className="banner-two-area sub-bg">
           <div className="banner-two__shape1">
             <img src="/images/shape/banner-two-left-line.png" alt="shape" />
@@ -86,9 +79,9 @@ export default function Home({ menus, content, footer }: InferGetStaticPropsType
             </div>
           </div>
         </section>
-        {/* Banner area end here */}
+        
 
-        {/* Topic area start here */}
+        
         <section className="topic-two-area pb-120">
           <div className="container">
             <div className="topic-two__wrp">
@@ -110,9 +103,9 @@ export default function Home({ menus, content, footer }: InferGetStaticPropsType
             </div>
           </div>
         </section>
-        {/* Topic area end here */}
+        
 
-        {/* About area start here */}
+        
         <section className="about-area pb-120">
           <div className="container">
             <div className="row g-4">
@@ -180,12 +173,12 @@ export default function Home({ menus, content, footer }: InferGetStaticPropsType
             </div>
           </div>
         </section>
-        {/* About area end here */}
+        
 
         <Footer content={footer} />
       </main>
 
-      <Scrollup />
+      <Scrollup /> */}
     </>
   );
 }
