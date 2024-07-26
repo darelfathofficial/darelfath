@@ -9,7 +9,7 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import Link from "next/link";
 
 export const getStaticPaths = (async () => {
-  const baseUrl = process.env.BASE_URL;
+  const baseUrl = 'http://127.0.0.1:3000'
   const connect = await fetch(`${baseUrl}/api/general/menu?original=true&page=home-1`);
   const response = await connect.json();
 
@@ -22,7 +22,7 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 export const getStaticProps = (async ({ params }) => {
-  const baseUrl = process.env.BASE_URL;
+  const baseUrl = 'http://127.0.0.1:3000'
   const menuConnect = await fetch(`${baseUrl}/api/general/menu`);
   const menuResponse = await menuConnect.json();
 

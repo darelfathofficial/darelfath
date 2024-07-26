@@ -9,7 +9,7 @@ import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Link from "next/link";
 
 export const getStaticProps = (async () => {
-  const baseUrl = process.env.BASE_URL;
+  const baseUrl = 'http://127.0.0.1:3000'
   const menuConnect = await fetch(`${baseUrl}/api/general/menu`);
   const menuResponse = await menuConnect.json();
 
