@@ -5,10 +5,23 @@ import Scrollup from "@/components/scrollup";
 import { FooterDTO } from "@/dtos/general/footer.dto";
 import { MenuDTO } from "@/dtos/general/menu.dto";
 import { Home1 } from "@/dtos/home-1.dto";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import Link from "next/link";
 
-export const getStaticProps = (async () => {
+export const getStaticPaths = (async () => {
+  const baseUrl = process.env.BASE_URL;
+  const connect = await fetch(`${baseUrl}/api/general/menu?original=true&page=home-1`);
+  const response = await connect.json();
+
+  return {
+    paths: (response.data as MenuDTO[]).map((item) => ({
+      params: { sheet: item.sheet },
+    })),
+    fallback: "blocking",
+  };
+}) satisfies GetStaticPaths;
+
+export const getStaticProps = (async ({ params }) => {
   const baseUrl = process.env.BASE_URL;
   const menuConnect = await fetch(`${baseUrl}/api/general/menu`);
   const menuResponse = await menuConnect.json();
@@ -16,7 +29,7 @@ export const getStaticProps = (async () => {
   const footerConnect = await fetch(`${baseUrl}/api/general/footer`);
   const footerResponse = await footerConnect.json();
 
-  const dataConnect = await fetch(`${baseUrl}/api/home-1/a32afdacc5e1428167987884b2ac41dd`);
+  const dataConnect = await fetch(`${baseUrl}/api/home-1/${(params?.sheet ?? "").toString()}`);
   const dataResponse = await dataConnect.json();
 
   return { props: { menus: menuResponse.data as MenuDTO[], content: dataResponse.data as Home1, footer: footerResponse.data as FooterDTO }, revalidate: 600 };
@@ -189,3 +202,4 @@ export default function Home({ menus, content, footer }: InferGetStaticPropsType
     </>
   );
 }
+
